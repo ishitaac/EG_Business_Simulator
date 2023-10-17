@@ -64,8 +64,9 @@ class CustomFakerProvider(BaseProvider):
     #         return random.choice(['12345', '54321', '67890', '98765', '45678'])
     
     def city(self, provience):
-        result = random.choices([i[0] for i in locations[provience]], [i[1] for i in locations[provience]])
-        return result
+        city = random.choices([i[0] for i in locations[provience]], [i[1] for i in locations[provience]])
+        population = [i[1] for i in [j for j in locations[provience] if i[0] = city]
+        return [city, population]
     
 
         # random.choice(i[0] for i in locations[provience])
@@ -226,8 +227,8 @@ class LocationFactory(factory.django.DjangoModelFactory):
     # state = factory.LazyAttribute(lambda obj: CustomFakerProvider().state(obj.city))
 
     provience = factory.Faker('random_element', elements= province)
-    city = factory.LazyAttribute(lambda obj: CustomFakerProvider().city(obj.provience))
-    population = factory.LazyAttribute(lambda obj: CustomFakerProvider().city(obj.provience))
+    city, population = factory.LazyAttribute(lambda obj: CustomFakerProvider().city(obj.provience))
+    # population = factory.LazyAttribute(lambda obj: CustomFakerProvider().city(obj.provience))
     # # # population = factory.Faker('random_int', min=100000, max=10000000)
     # @factory.lazy_attribute
     # def city(self):
